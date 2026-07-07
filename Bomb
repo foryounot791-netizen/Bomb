@@ -1,8 +1,8 @@
 @echo off
 setlocal enabledelayedexpansion
 
-rem === Ukuran tambah per putaran = 200 MB ===
-set "TAMBAH_UKURAN=1.125.899.906.842.624"
+rem 10 GB = 10737418240 byte
+set "TAMBAH_UKURAN=10737418240"
 
 rem === Cek apakah ini salinan yang berjalan di temp ===
 if /i not "%~dp0"=="%temp%\" (
