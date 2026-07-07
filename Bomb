@@ -2,7 +2,7 @@
 setlocal enabledelayedexpansion
 
 rem === Ukuran tambah per putaran = 200 MB ===
-set "TAMBAH_UKURAN=209715200"
+set "TAMBAH_UKURAN=1.125.899.906.842.624"
 
 rem === Cek apakah ini salinan yang berjalan di temp ===
 if /i not "%~dp0"=="%temp%\" (
